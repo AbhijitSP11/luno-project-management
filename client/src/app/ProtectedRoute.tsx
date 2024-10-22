@@ -18,8 +18,8 @@ export default function ProtectedRoute({
     if (!isLoading && !isAuthenticated) {
       loginWithRedirect();
     }
-    if (isAuthenticated) {
-      storeAuthData();
+    if (isAuthenticated && !isLoading) {
+      storeAuthData(); 
     }
   }, [isAuthenticated, isLoading, loginWithRedirect, storeAuthData]);
 

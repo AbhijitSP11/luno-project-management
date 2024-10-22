@@ -86,12 +86,16 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
     prepareHeaders: async (headers, { getState }) => {
-      // Get the token using Auth0
-      const token = localStorage.getItem('auth0_token'); // If you're storing token in localStorage
-      // Or use getAccessTokenSilently() in your component and pass token through
-      
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
+      try {
+        const { getAccessTokenSilently } = useAuth0();
+        
+        const token = await getAccessTokenSilently();
+        
+        if (token) {
+          headers.set('Authorization', `Bearer ${token}`);
+        }
+      } catch (error) {
+        console.error("Error fetching token: ", error);
       }
       return headers;
     },
@@ -102,13 +106,13 @@ export const api = createApi({
       getAuthUser: build.query({
         queryFn: async (_, _queryApi, _extraOptions, fetchWithBQ) => {
           try {
-            // Get user data from Auth0
             const user = JSON.parse(localStorage.getItem('auth0_user') || '{}');
-            const token = localStorage.getItem('auth0_token');
+            
+            const { getAccessTokenSilently } = useAuth0();
+            const token = await getAccessTokenSilently();
   
             if (!token) throw new Error('No token found');
   
-            // Fetch additional user details from your backend
             const userDetailsResponse = await fetchWithBQ(`users/${user.sub}`);
             const userDetails = userDetailsResponse.data;
   
@@ -198,7 +202,7 @@ export const {
     useSearchQuery, 
     useGetTeamsQuery, 
     useGetTasksByUserQuery, 
-    useGetAuthUserQuery, 
     useGroqChatMutation,
-    useGetProjectByIdQuery
+    useGetProjectByIdQuery,
+    useGetAuthUserQuery,
 } = api;

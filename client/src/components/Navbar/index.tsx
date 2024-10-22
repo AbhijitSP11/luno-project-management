@@ -1,11 +1,10 @@
 import React from 'react'
-import {LogOut, LogOutIcon, LucideLogOut, Menu, Moon, Settings, Sun, User} from "lucide-react"
+import {LucideLogOut, Menu, Moon, Settings, Sun, User} from "lucide-react"
 import Link from 'next/link'
 import { useAppDispatch, useAppSelector } from '@/app/redux'
 import { setIsSidebarCollapsed } from '@/state'
 import { useGetAuthUserQuery } from '@/state/api'
 import { signOut } from 'aws-amplify/auth'
-import Image from 'next/image';
 import Search from '../search';
 import { useTheme } from "next-themes";
 import {
@@ -23,8 +22,9 @@ const Navbar = () => {
   const { theme } = useTheme();
   const isDarkMode = theme === "dark";
 
-  const {data: currentUser}  = useGetAuthUserQuery({});
-
+  const { data: currentUser, error: userError, isLoading: userLoading } = useGetAuthUserQuery({});
+  console.log("currentUser", currentUser);
+  
   const handleSignOut =  async () => {
     try{
       await signOut();
@@ -35,7 +35,6 @@ const Navbar = () => {
 
   if(!currentUser) return null;
 
-  const currentUserDetails = currentUser?.userDetails;
 
   return (
     <div className="w-full flex items-center justify-between bg-white dark:bg-dark-bg px-4 py-3">
@@ -58,16 +57,16 @@ const Navbar = () => {
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon">
             <div className='align-center flex h-9 w-9 justify-center'>
-              {!!currentUserDetails?.profilePictureUrl ? (
+              {/* {!!currentUserDetails?.profilePictureUrl ? (
                 <Image 
                   src={`https://proto-pm-s3-images.s3.ap-south-1.amazonaws.com/${currentUserDetails?.profilePictureUrl}`}
-                  alt={currentUserDetails?.username || "User profile"}
+                  alt={currentUser?.user || "User profile"}
                   width={100}
                   height={100}
                   className="h-full object-cover rounded-full"/>
-              ) : (
+              ) : ( */}
                 <User className='h-6 w-6 cursor-pointer self-center rounded-full dark:text-white'/>
-              )}
+              {/* )} */}
             </div>
             </Button>
           </DropdownMenuTrigger>
@@ -87,7 +86,7 @@ const Navbar = () => {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-            <span className='mx-3 text-gray-800 dark:text-white'>{currentUserDetails?.username}</span>
+            <span className='mx-3 text-gray-800 dark:text-white'>{currentUser?.user}</span>
         </div>
       </div>
     </div>

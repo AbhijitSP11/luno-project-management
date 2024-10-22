@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import DashboardWrapper from "./dashboradWrapper";
-import { ThemeProvider } from "@/components/themeProvider";
+import { ThemeProvider } from "@/app/themeProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

@@ -2,8 +2,8 @@ import React from "react";
 import { Priority } from "@/state/api";
 import ReusablePriorityPage from "../ReusablePriorityPage";
 
-const Urgent = () => {
+const Medium = () => {
   return <ReusablePriorityPage priority={Priority.Medium} />;
 };
 
-export default Urgent;
+export default Medium;

@@ -6,7 +6,7 @@ import Sidebar from "@/components/Sidebar";
 import StoreProvider, { useAppSelector } from "./redux";
 import ClientProvider from "./ClientProvider";
 import ChatBot from "@/components/chatbot";
-import { Auth0ProviderWrapper } from "../../Auth0ProviderWrapper";
+import { Auth0ProviderWrapper } from "./Auth0ProviderWrapper";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const isSidebarCollapsed = useAppSelector(

@@ -17,6 +17,7 @@ export function Auth0ProviderWrapper({ children }: { children: React.ReactNode }
       domain={domain}
       clientId={clientId}
       authorizationParams={{
+        audience: process.env.NEXT_PUBLIC_AUTH0_AUDIENCE,
         redirect_uri: typeof window !== 'undefined' ? window.location.origin : '',
       }}
       onRedirectCallback={onRedirectCallback}
