@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.2.4",
     "@aws-amplify/ui-react": "^6.5.3",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
@@ -23,7 +24,7 @@
     "@reduxjs/toolkit": "^2.2.7",
     "@types/react-datepicker": "^6.2.0",
     "aws-amplify": "^6.6.4",
-    "axios": "^1.7.3",
+    "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",

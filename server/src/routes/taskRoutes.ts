@@ -5,8 +5,10 @@ import {
   getUserTasks,
   updateTaskStatus,
 } from "../controllers/taskController";
+import jwtCheck from "../../middleware/auth"
 
 const router = Router();
+router.use(jwtCheck);
 
 router.get("/", getTasks);
 router.post("/", createTask);

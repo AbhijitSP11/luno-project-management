@@ -4,9 +4,9 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import StoreProvider, { useAppSelector } from "./redux";
-import AuthProvider from "./authProvider";
 import ClientProvider from "./ClientProvider";
 import ChatBot from "@/components/chatbot";
+import { Auth0ProviderWrapper } from "../../Auth0ProviderWrapper";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const isSidebarCollapsed = useAppSelector(
@@ -39,13 +39,13 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
 const DashboardWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
-    <StoreProvider>
-      <AuthProvider>
+    <Auth0ProviderWrapper>
+      <StoreProvider>
         <ClientProvider>
           <DashboardLayout>{children}</DashboardLayout>
         </ClientProvider>
-      </AuthProvider>
-    </StoreProvider>
+      </StoreProvider>
+    </Auth0ProviderWrapper>
   );
 };
 

@@ -1,7 +1,9 @@
 import { Router } from "express";
 import { getUser, getUsers, postUser } from "../controllers/userController";
+import jwtCheck from "../../middleware/auth"
 
 const router = Router();
+router.use(jwtCheck);
 
 router.get("/", getUsers);
 router.post("/", postUser);
