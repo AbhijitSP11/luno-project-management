@@ -1,122 +1,182 @@
 [
   {
+    "userId": 1,
+    "email": "alice.jones@example.com",
+    "name": "Alice Jones",
     "username": "AliceJones",
-    "teamId": 1,
     "profilePictureUrl": "p1.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174001"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 1
   },
   {
+    "userId": 2,
+    "email": "bob.smith@example.com",
+    "name": "Bob Smith",
     "username": "BobSmith",
-    "teamId": 2,
     "profilePictureUrl": "p2.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174002"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 2
   },
   {
+    "userId": 3,
+    "email": "carol.white@example.com",
+    "name": "Carol White",
     "username": "CarolWhite",
-    "teamId": 3,
     "profilePictureUrl": "p3.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174003"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 3
   },
   {
+    "userId": 4,
+    "email": "dave.brown@example.com",
+    "name": "Dave Brown",
     "username": "DaveBrown",
-    "teamId": 4,
     "profilePictureUrl": "p4.jpeg",
-    "cognitoId": "213b7530-1031-70e0-67e9-fe0805e18fb3"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 4
   },
   {
+    "userId": 5,
+    "email": "eve.clark@example.com",
+    "name": "Eve Clark",
     "username": "EveClark",
-    "teamId": 5,
     "profilePictureUrl": "p5.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174005"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 5
   },
   {
+    "userId": 6,
+    "email": "frank.wright@example.com",
+    "name": "Frank Wright",
     "username": "FrankWright",
-    "teamId": 1,
     "profilePictureUrl": "p6.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174006"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 1
   },
   {
+    "userId": 7,
+    "email": "grace.hall@example.com",
+    "name": "Grace Hall",
     "username": "GraceHall",
-    "teamId": 2,
     "profilePictureUrl": "p7.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174007"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 2
   },
   {
+    "userId": 8,
+    "email": "henry.allen@example.com",
+    "name": "Henry Allen",
     "username": "HenryAllen",
-    "teamId": 3,
     "profilePictureUrl": "p8.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174008"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 3
   },
   {
+    "userId": 9,
+    "email": "ida.martin@example.com",
+    "name": "Ida Martin",
     "username": "IdaMartin",
-    "teamId": 4,
     "profilePictureUrl": "p9.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174009"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 4
   },
   {
+    "userId": 10,
+    "email": "john.doe@example.com",
+    "name": "John Doe",
     "username": "JohnDoe",
-    "teamId": 5,
     "profilePictureUrl": "p10.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174010"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 5
   },
   {
+    "userId": 11,
+    "email": "laura.adams@example.com",
+    "name": "Laura Adams",
     "username": "LauraAdams",
-    "teamId": 1,
     "profilePictureUrl": "p11.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174011"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 1
   },
   {
+    "userId": 12,
+    "email": "norman.bates@example.com",
+    "name": "Norman Bates",
     "username": "NormanBates",
-    "teamId": 2,
     "profilePictureUrl": "p12.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174012"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 2
   },
   {
+    "userId": 13,
+    "email": "olivia.pace@example.com",
+    "name": "Olivia Pace",
     "username": "OliviaPace",
-    "teamId": 3,
     "profilePictureUrl": "p13.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174013"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 3
   },
   {
+    "userId": 14,
+    "email": "peter.quill@example.com",
+    "name": "Peter Quill",
     "username": "PeterQuill",
-    "teamId": 4,
     "profilePictureUrl": "p1.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174014"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 4
   },
   {
+    "userId": 15,
+    "email": "quincy.adams@example.com",
+    "name": "Quincy Adams",
     "username": "QuincyAdams",
-    "teamId": 5,
     "profilePictureUrl": "p2.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174015"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 5
   },
   {
+    "userId": 16,
+    "email": "rachel.green@example.com",
+    "name": "Rachel Green",
     "username": "RachelGreen",
-    "teamId": 1,
     "profilePictureUrl": "p3.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174016"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 1
   },
   {
+    "userId": 17,
+    "email": "steve.jobs@example.com",
+    "name": "Steve Jobs",
     "username": "SteveJobs",
-    "teamId": 2,
     "profilePictureUrl": "p4.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174017"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 2
   },
   {
+    "userId": 18,
+    "email": "tina.fey@example.com",
+    "name": "Tina Fey",
     "username": "TinaFey",
-    "teamId": 3,
     "profilePictureUrl": "p5.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174018"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 3
   },
   {
+    "userId": 19,
+    "email": "ursula.monroe@example.com",
+    "name": "Ursula Monroe",
     "username": "UrsulaMonroe",
-    "teamId": 4,
     "profilePictureUrl": "p6.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174019"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 4
   },
   {
+    "userId": 20,
+    "email": "victor.hugo@example.com",
+    "name": "Victor Hugo",
     "username": "VictorHugo",
-    "teamId": 5,
     "profilePictureUrl": "p7.jpeg",
-    "cognitoId": "123e4567-e89b-12d3-a456-426614174020"
+    "emailVerified": "2024-01-01T00:00:00.000Z",
+    "teamId": 5
   }
 ]

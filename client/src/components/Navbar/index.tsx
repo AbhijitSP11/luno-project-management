@@ -3,8 +3,6 @@ import {LucideLogOut, Menu, Moon, Settings, Sun, User} from "lucide-react"
 import Link from 'next/link'
 import { useAppDispatch, useAppSelector } from '@/app/redux'
 import { setIsSidebarCollapsed } from '@/state'
-import { useGetAuthUserQuery } from '@/state/api'
-import { signOut } from 'aws-amplify/auth'
 import Search from '../search';
 import { useTheme } from "next-themes";
 import {
@@ -14,6 +12,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { useAuth } from '@/hooks/useAuth'
+import { signOut } from 'next-auth/react'
+import Image from 'next/image'
 
 const Navbar = () => {
   const { setTheme } = useTheme()
@@ -22,18 +23,19 @@ const Navbar = () => {
   const { theme } = useTheme();
   const isDarkMode = theme === "dark";
 
-  const { data: currentUser, error: userError, isLoading: userLoading } = useGetAuthUserQuery({});
-  console.log("currentUser", currentUser);
+  const { user, isLoading } = useAuth(true);
+
+  console.log("user in navbar", user);
   
   const handleSignOut =  async () => {
     try{
-      await signOut();
+      signOut({ callbackUrl: '/auth/signin' })
     }catch (error: any){
       console.error("Error signing out", error);  
     }
   };
 
-  if(!currentUser) return null;
+  if(!user) return null;
 
 
   return (
@@ -57,16 +59,16 @@ const Navbar = () => {
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon">
             <div className='align-center flex h-9 w-9 justify-center'>
-              {/* {!!currentUserDetails?.profilePictureUrl ? (
+               {!!user?.image ? (
                 <Image 
-                  src={`https://proto-pm-s3-images.s3.ap-south-1.amazonaws.com/${currentUserDetails?.profilePictureUrl}`}
-                  alt={currentUser?.user || "User profile"}
+                  src={`https://proto-pm-s3-images.s3.ap-south-1.amazonaws.com/${user?.image}`}
+                  alt={user?.image || "User profile"}
                   width={100}
                   height={100}
                   className="h-full object-cover rounded-full"/>
-              ) : ( */}
+              ) : ( 
                 <User className='h-6 w-6 cursor-pointer self-center rounded-full dark:text-white'/>
-              {/* )} */}
+               )} 
             </div>
             </Button>
           </DropdownMenuTrigger>
@@ -86,7 +88,7 @@ const Navbar = () => {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-            <span className='mx-3 text-gray-800 dark:text-white'>{currentUser?.user}</span>
+            <span className='mx-3 text-gray-800 dark:text-white'>{user?.name}</span>
         </div>
       </div>
     </div>

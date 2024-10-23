@@ -15,6 +15,7 @@ import { dataGridClassNames, dataGridSxStyles } from "@/utils/dataGridClassNames
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useTheme } from "next-themes";
 import React, { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
 
 type Props = {
   priority: Priority;
@@ -81,14 +82,14 @@ const ReusablePriorityPage = ({ priority }: Props) => {
   const [view, setView] = useState("list");
   const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
 
-  const { data: currentUser, error: userError, isLoading: userLoading } = useGetAuthUserQuery({});
-  const userId = currentUser?.userSub ?? 1;
+  const { user, isLoading:userLoading } = useAuth(true);
+  const userId = Number(user?.id) ?? 0;
   
   const {
     data: tasks,
     isLoading,
     isError: isTasksError,
-  } = useGetTasksByUserQuery(userId || 0, {
+  } = useGetTasksByUserQuery(userId, {
     skip: userId === null,
   });
 

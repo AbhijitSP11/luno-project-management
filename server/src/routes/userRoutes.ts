@@ -1,12 +1,11 @@
 import { Router } from "express";
-import { getUser, getUsers, postUser } from "../controllers/userController";
-import jwtCheck from "../../middleware/auth"
-
+import { getAuthUser, getUser, getUsers, postUser } from "../controllers/userController";
+import { authMiddleware } from "../middleware/auth";
 const router = Router();
-router.use(jwtCheck);
 
 router.get("/", getUsers);
 router.post("/", postUser);
-router.get("/:cognitoId", getUser);
+router.get("/me",authMiddleware, getAuthUser);
+  
 
 export default router;

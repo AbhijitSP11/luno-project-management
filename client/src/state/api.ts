@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import { useAuth0 } from '@auth0/auth0-react';
+import { getSession } from 'next-auth/react';
 
 export interface Project{
     id: number;
@@ -82,20 +82,26 @@ export interface ChatResponse {
   response: string;
 };
 
+interface UserDetails {
+};
+
+interface AuthUser {
+  user: any;
+  userDetails: UserDetails;
+}
+
 export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
-    prepareHeaders: async (headers, { getState }) => {
+    prepareHeaders: async (headers) => {
       try {
-        const { getAccessTokenSilently } = useAuth0();
+        const session = await getSession();
         
-        const token = await getAccessTokenSilently();
-        
-        if (token) {
-          headers.set('Authorization', `Bearer ${token}`);
+        if (session?.accessToken) {
+           headers.set('Authorization', `Bearer ${session.accessToken}`)
         }
       } catch (error) {
-        console.error("Error fetching token: ", error);
+        console.error("Error fetching session: ", error);
       }
       return headers;
     },
@@ -104,28 +110,14 @@ export const api = createApi({
     tagTypes: ["Projects", "Tasks", "Users", "Teams"],
     endpoints: (build) => ({
       getAuthUser: build.query({
-        queryFn: async (_, _queryApi, _extraOptions, fetchWithBQ) => {
-          try {
-            const user = JSON.parse(localStorage.getItem('auth0_user') || '{}');
-            
-            const { getAccessTokenSilently } = useAuth0();
-            const token = await getAccessTokenSilently();
-  
-            if (!token) throw new Error('No token found');
-  
-            const userDetailsResponse = await fetchWithBQ(`users/${user.sub}`);
-            const userDetails = userDetailsResponse.data;
-  
-            return { 
-              data: { 
-                user,
-                userSub: user.sub,
-                userDetails 
-              } 
-            };
-          } catch (error: any) {
-            return { error: error.message || 'Could not fetch user data' };
-          }
+        query: () =>'/api/users/me',
+        transformResponse: async (response, meta, arg) => {
+          const session = await getSession();
+          console.log("session in transformResponse:", session);
+          return {
+            user: session?.user,
+            userDetails: response
+          };
         },
       }),
         getProjects: build.query<Project[], void>({
@@ -139,6 +131,14 @@ export const api = createApi({
                 body: project
             }), 
             invalidatesTags: ["Projects"]
+        }),
+        upsertUser: build.mutation<UserDetails, Partial<UserDetails>>({
+          query: (userData) => ({
+            url: 'users',
+            method: 'POST',
+            body: userData,
+          }),
+          invalidatesTags: ['Users'],
         }),
         getProjectById: build.query<Project[], {id: number}>({
             query: ({id}) => `projects?id=${id}`,  
@@ -205,4 +205,5 @@ export const {
     useGroqChatMutation,
     useGetProjectByIdQuery,
     useGetAuthUserQuery,
+    useUpsertUserMutation
 } = api;

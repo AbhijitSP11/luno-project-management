@@ -12,6 +12,8 @@ import searchRoutes from "./routes/searchRoutes";
 import teamRouter from "./routes/teamRoutes";
 import groqRoutes from "./routes/groqRoutes";
 import { PrismaClient } from "@prisma/client";
+import authRouter from "./routes/authRoutes";
+import rateLimit from 'express-rate-limit';
 
 const prisma = new PrismaClient();
 
@@ -33,6 +35,21 @@ app.use(cors({
 }));
 
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ 
+    error: 'Something broke!',
+    message: process.env.NODE_ENV === 'development' ? err.message : undefined
+  });
+});
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, 
+  max: 100 
+});
+app.use(limiter);
+
 /* ROUTES */
 app.get("/", (req, res) => {
   res.send("This is home route");
@@ -40,10 +57,11 @@ app.get("/", (req, res) => {
 
 app.use("/projects", projectRoutes);
 app.use("/tasks", taskRoutes);
-app.use("/users", userRoutes);
+app.use("/api/users", userRoutes);
 app.use("/search", searchRoutes);
 app.use("/teams", teamRouter);
 app.use("/groq", groqRoutes);
+app.use('/api/auth', authRouter);
 
 /* SERVER */
 const port = Number(process.env.PORT) || 3000;

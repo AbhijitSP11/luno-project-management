@@ -29,6 +29,7 @@ async function main() {
     "projectTeam.json",
     "user.json",
     "task.json",
+    "account.json",
     "attachment.json",
     "comment.json",
     "taskAssignment.json",
