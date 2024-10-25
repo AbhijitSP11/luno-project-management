@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -36,7 +36,7 @@ app.use(cors({
 
 
 // Error handling middleware
-app.use((err:any, req:Request, res:Response, next) => {
+app.use((err:any, req:Request, res:Response, next: NextFunction) => {
   console.error(err.stack);
   res.status(500).json({ 
     error: 'Something broke!',

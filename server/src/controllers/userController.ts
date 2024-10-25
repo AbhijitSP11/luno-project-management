@@ -65,29 +65,34 @@ export const postUser = async (req: Request, res: Response):Promise<void> => {
       }
 };
 
-export const getAuthUser = async (req:Request, res:Response):Promise<void> => {
-    try {
-      const email = req.user.email;
+export const getAuthUser = async (req: Request, res: Response): Promise<Response> => {
+  try {
+    const user = req.user as { email: string }; 
 
-      const user = await prisma.user.findUnique({
-        where: { email }, 
-        include: {
-          team: true,
-          authoredTasks: true,
-          assignedTasks: true,
-        },
-      });
-
-      if (!user) {
-        return res.status(404).json({ error: 'User not found' });
-      }
-      
-      res.json(user);
-    } catch (error) {
-      console.error('Error fetching user:', error);
-      res.status(500).json({ error: 'Server error' });
+    if (!user || !user.email) {
+      return res.status(401).json({ error: 'Unauthorized' });
     }
+
+    const foundUser = await prisma.user.findUnique({
+      where: { email: user.email },
+      include: {
+        team: true,
+        authoredTasks: true,
+        assignedTasks: true,
+      },
+    });
+
+    if (!foundUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    return res.json(foundUser); // Return the response here
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    return res.status(500).json({ error: 'Server error' });
+  }
 };
+
 
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
