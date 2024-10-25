@@ -113,7 +113,6 @@ export const api = createApi({
         query: () =>'/api/users/me',
         transformResponse: async (response, meta, arg) => {
           const session = await getSession();
-          console.log("session in transformResponse:", session);
           return {
             user: session?.user,
             userDetails: response
@@ -134,7 +133,7 @@ export const api = createApi({
         }),
         upsertUser: build.mutation<UserDetails, Partial<UserDetails>>({
           query: (userData) => ({
-            url: 'users',
+            url: '/api/users/create',
             method: 'POST',
             body: userData,
           }),

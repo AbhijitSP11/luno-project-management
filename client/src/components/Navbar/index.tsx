@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {LucideLogOut, Menu, Moon, Settings, Sun, User} from "lucide-react"
 import Link from 'next/link'
 import { useAppDispatch, useAppSelector } from '@/app/redux'
@@ -19,17 +19,16 @@ import Image from 'next/image'
 const Navbar = () => {
   const { setTheme } = useTheme()
   const dispatch = useAppDispatch();
+  const [imageError, setImageError] = useState<boolean>(false);
   const isSidebarCollapsed = useAppSelector((state)=> state.global.isSidebarCollapsed);
   const { theme } = useTheme();
   const isDarkMode = theme === "dark";
 
   const { user, isLoading } = useAuth(true);
 
-  console.log("user in navbar", user);
-  
   const handleSignOut =  async () => {
     try{
-      signOut({ callbackUrl: '/auth/signin' })
+      signOut({ callbackUrl: '/' })
     }catch (error: any){
       console.error("Error signing out", error);  
     }
@@ -39,7 +38,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="w-full flex items-center justify-between bg-white dark:bg-dark-bg px-4 py-3">
+    <div className="w-full flex items-center justify-between bg-white dark:bg-gray-950 px-4 py-3">
       <div className="flex items-center gap-8">
       {!isSidebarCollapsed ? null : (
         <button onClick={()=> dispatch(setIsSidebarCollapsed(!isSidebarCollapsed))}>
@@ -59,36 +58,43 @@ const Navbar = () => {
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon">
             <div className='align-center flex h-9 w-9 justify-center'>
-               {!!user?.image ? (
-                <Image 
-                  src={`https://proto-pm-s3-images.s3.ap-south-1.amazonaws.com/${user?.image}`}
-                  alt={user?.image || "User profile"}
-                  width={100}
-                  height={100}
-                  className="h-full object-cover rounded-full"/>
-              ) : ( 
-                <User className='h-6 w-6 cursor-pointer self-center rounded-full dark:text-white'/>
-               )} 
+            {!!user?.image && !imageError ? (
+              <Image
+                src={`https://proto-pm-s3-images.s3.ap-south-1.amazonaws.com/${user?.image}`}
+                alt={user?.image || "User profile"}
+                width={100}
+                height={100}
+                className="h-full object-cover rounded-full"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className="flex items-center justify-center w-10 h-10 bg-blue-500 rounded-full">
+                <User className="h-6 w-6 text-white" />
+              </div>
+            )}
             </div>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem className='flex items-center gap-2 p-2'>
-              <Link 
-                className={ `flex gap-2 items-center h-min w-min rounded ${isDarkMode ? 'dark:hover:bg-gray-700' : 'hover:bg-gray-100'} `}
-                href='/settings'>
-                <Settings className='size-5 cursor-pointer dark:text-white'/>
-                <p>Settings</p>
-              </Link>
+            <DropdownMenuItem >
+              <span className='flex items-center gap-2 p-2'>
+                <Link 
+                  className={ `flex gap-2 items-center h-min w-min rounded ${isDarkMode ? 'dark:hover:bg-gray-700' : 'hover:bg-gray-100'} `}
+                  href='/settings'>
+                  <Settings className='size-5 cursor-pointer dark:text-white'/>
+                  <p>Settings</p>
+                </Link>
+              </span>
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={handleSignOut} className='flex items-center gap-2 p-2 mt-2 
-              border-t border-gray-400 dark:border-gray-600'>
-              <LucideLogOut className='size-5'/> 
-              <p>Sign Out</p>
+            <DropdownMenuItem onClick={handleSignOut}>
+              <span className='cursor-pointer flex items-center gap-2 p-2 mt-2 hover:text-red-500'>
+                <LucideLogOut className='size-5'/> 
+                <p className=''>Sign Out</p>
+              </span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-            <span className='mx-3 text-gray-800 dark:text-white'>{user?.name}</span>
+          <span className='mx-3 text-gray-800 dark:text-white'>{user?.name}</span>
         </div>
       </div>
     </div>

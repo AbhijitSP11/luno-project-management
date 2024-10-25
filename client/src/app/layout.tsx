@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/app/themeProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Luno",
+  title: "Aster",
   description: "Created by Abhijit Panchal",
 };
 

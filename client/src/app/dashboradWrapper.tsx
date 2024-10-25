@@ -7,6 +7,7 @@ import StoreProvider, { useAppSelector } from "./redux";
 import ClientProvider from "./ClientProvider";
 import ChatBot from "@/components/chatbot";
 import AuthProvider from "./providers/SessionProvider";
+import { usePathname } from "next/navigation";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const isSidebarCollapsed = useAppSelector(
@@ -38,6 +39,16 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 };
 
 const DashboardWrapper = ({ children }: { children: React.ReactNode }) => {
+  const pathname = usePathname();
+  if (pathname === "/" || pathname === "/api/auth/signin") {
+    return (
+      <AuthProvider>
+        <StoreProvider>
+          <ClientProvider>{children}</ClientProvider>
+        </StoreProvider>
+      </AuthProvider>
+    );
+  }
   return (
     <AuthProvider>
       <StoreProvider>

@@ -36,7 +36,7 @@ app.use(cors({
 
 
 // Error handling middleware
-app.use((err, req, res, next) => {
+app.use((err:any, req:Request, res:Response, next) => {
   console.error(err.stack);
   res.status(500).json({ 
     error: 'Something broke!',
@@ -51,7 +51,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 /* ROUTES */
-app.get("/", (req, res) => {
+app.get("/", (req:Request, res:Response) => {
   res.send("This is home route");
 });
 

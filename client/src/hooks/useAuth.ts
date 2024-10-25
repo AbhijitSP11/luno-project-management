@@ -5,6 +5,7 @@ import { useEffect } from "react";
 
 export function useAuth(requireAuth = true) {
   const { data: session, status } = useSession();
+  
   const router = useRouter();
   const pathname = usePathname();
   const {
@@ -15,11 +16,9 @@ export function useAuth(requireAuth = true) {
     skip: !session?.user?.id,
   });
 
-  console.log("authUser useAuth--", authUser)
-
   useEffect(() => {
-    if (requireAuth && status === "unauthenticated") {
-      router.push(`/auth/signin?callbackUrl=${encodeURIComponent(pathname)}`);
+    if (requireAuth && status === "unauthenticated" && pathname !== "/" && pathname !== "/api/auth/signin") {
+      router.push('/api/auth/signin');
     }
   }, [requireAuth, status, router, pathname]);
 

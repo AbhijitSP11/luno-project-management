@@ -58,7 +58,9 @@ const Search = () => {
     <div className="w-full p-4">
       <button 
         onClick={() => setIsOpen(true)}
-        className="w-full mx-auto px-4 py-2 text-left text-gray-500 border rounded-lg shadow dark:hover:bg-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+        className="w-full mx-auto px-4 py-2 text-left text-gray-500 border rounded-lg shadow 
+        dark:hover:bg-gray-800 dark:border dark:hover:border-purple-500/50 hover:bg-gray-50 dark:hover:text-gray-200
+        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
       >
         Search across the workspace for projects, tasks, teams...
       </button>

@@ -6,7 +6,8 @@
     "username": "AliceJones",
     "profilePictureUrl": "p1.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 1
+    "teamId": 1,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 2,
@@ -15,7 +16,9 @@
     "username": "BobSmith",
     "profilePictureUrl": "p2.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 2
+    "teamId": 2,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
+
   },
   {
     "userId": 3,
@@ -24,7 +27,8 @@
     "username": "CarolWhite",
     "profilePictureUrl": "p3.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 3
+    "teamId": 3,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 4,
@@ -33,7 +37,8 @@
     "username": "DaveBrown",
     "profilePictureUrl": "p4.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 4
+    "teamId": 4,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 5,
@@ -42,7 +47,8 @@
     "username": "EveClark",
     "profilePictureUrl": "p5.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 5
+    "teamId": 5,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 6,
@@ -51,7 +57,8 @@
     "username": "FrankWright",
     "profilePictureUrl": "p6.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 1
+    "teamId": 1,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 7,
@@ -60,7 +67,8 @@
     "username": "GraceHall",
     "profilePictureUrl": "p7.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 2
+    "teamId": 2,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 8,
@@ -69,7 +77,8 @@
     "username": "HenryAllen",
     "profilePictureUrl": "p8.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 3
+    "teamId": 3,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 9,
@@ -78,7 +87,8 @@
     "username": "IdaMartin",
     "profilePictureUrl": "p9.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 4
+    "teamId": 4,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 10,
@@ -87,7 +97,8 @@
     "username": "JohnDoe",
     "profilePictureUrl": "p10.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 5
+    "teamId": 5,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 11,
@@ -96,7 +107,8 @@
     "username": "LauraAdams",
     "profilePictureUrl": "p11.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 1
+    "teamId": 1,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 12,
@@ -105,7 +117,8 @@
     "username": "NormanBates",
     "profilePictureUrl": "p12.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 2
+    "teamId": 2,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 13,
@@ -114,7 +127,8 @@
     "username": "OliviaPace",
     "profilePictureUrl": "p13.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 3
+    "teamId": 3,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 14,
@@ -123,7 +137,8 @@
     "username": "PeterQuill",
     "profilePictureUrl": "p1.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 4
+    "teamId": 4,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 15,
@@ -132,7 +147,8 @@
     "username": "QuincyAdams",
     "profilePictureUrl": "p2.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 5
+    "teamId": 5,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 16,
@@ -141,7 +157,8 @@
     "username": "RachelGreen",
     "profilePictureUrl": "p3.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 1
+    "teamId": 1,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 17,
@@ -150,7 +167,8 @@
     "username": "SteveJobs",
     "profilePictureUrl": "p4.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 2
+    "teamId": 2,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 18,
@@ -159,7 +177,8 @@
     "username": "TinaFey",
     "profilePictureUrl": "p5.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 3
+    "teamId": 3,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 19,
@@ -168,7 +187,8 @@
     "username": "UrsulaMonroe",
     "profilePictureUrl": "p6.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 4
+    "teamId": 4,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   },
   {
     "userId": 20,
@@ -177,6 +197,7 @@
     "username": "VictorHugo",
     "profilePictureUrl": "p7.jpeg",
     "emailVerified": "2024-01-01T00:00:00.000Z",
-    "teamId": 5
+    "teamId": 5,
+    "password": "$2b$10$ER8hPItHlyGpjiExnAlxbukf2xiAhUXyX8Fg924MsUXKx/NcQ7gde"
   }
 ]

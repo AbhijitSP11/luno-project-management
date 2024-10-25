@@ -88,13 +88,13 @@ const Sidebar = () => {
   if(!user) return null;
     
     const sidebarClassNames = `fixed flex flex-col h-[100%] justify-between shadow-xl
-    transition-all duration-300 h-full z-40 dark:bg-black bg-white overflow-hidden ${isSidebarCollapsed ? "w-0" :  "w-64"}
+    transition-all duration-300 h-full z-40 dark:bg-gray-950 bg-white overflow-hidden ${isSidebarCollapsed ? "w-0" :  "w-64"}
     `;
   return (
     <div className={sidebarClassNames}>
         <div className='flex h-[100%] w-full flex-col justify-start'>
             {/*Logo*/}
-            <div className='z-50 flex min-h-[56px] w-64 items-center justify-between bg-white px-6 pt-3 dark:bg-black'>
+            <div className='z-50 flex min-h-[56px] w-64 items-center justify-between bg-white px-6 pt-3 dark:bg-gray-950 '>
                 <div className='text-xl font-bold text-gray-800 dark:text-white'>
                 <Image src={"https://proto-pm-s3-images.s3.ap-south-1.amazonaws.com/logo.png"} alt='logo' width={80} height={80} className='rounded-lg p-2'/>
                 </div>
@@ -158,7 +158,7 @@ const Sidebar = () => {
                 }
             </div>
         </div>
-        <div className='z-10 mt-32 flex w-full flex-col items-center gap-4 bg-white px-8 py-4 dark:bg-black md:hidden'>
+        <div className='z-10 mt-32 flex w-full flex-col items-center gap-4 bg-white px-8 py-4 dark:bg-gray-950  md:hidden'>
             <div className='flex w-full items-center'>
                 <div className='align-center flex h-9 w-9 justify-center'>
                 {!!user?.image ? (
@@ -198,7 +198,7 @@ const SidebarLink = ({href, icon:Icon, label }: ISidebarLinkProps ) => {
     return (
             <Link href={href} className='w-full'>
                 <div className={`relative flex cursor-pointer items-center gap-3 transition-colors
-                    hover:bg-gray-100 dark:bg-black dark:hover:bg-gray-700 px-8 py-3
+                    hover:bg-gray-100 dark:bg-gray-950  dark:hover:bg-gray-700 px-8 py-3
                     ${isActive ? "bg-gray-100 text-white dark:bg-gray-600": ""}
                     justify-start
                     `}>

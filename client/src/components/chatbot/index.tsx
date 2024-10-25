@@ -11,6 +11,7 @@ import { customComponents, menuOptions } from '@/constants/markdown';
 import { Discuss } from 'react-loader-spinner';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import { useAuth } from '@/hooks/useAuth';
 
 const ChatBot = () => {
   const dispatch = useAppDispatch();
@@ -24,7 +25,7 @@ const ChatBot = () => {
   const [inputText, setInputText] = useState<string>('');
 
   const toggleChat = () => setIsOpen(!isOpen);
-
+  const { user, isLoading:userLoading } = useAuth(true);
 
 
   const handleSendMessage = async (message: string) => {
@@ -44,6 +45,7 @@ const ChatBot = () => {
     e.preventDefault();
     handleSendMessage(inputText);
   };
+
 
   const renderContent = () => {
     if (currentSection === 'home') {
@@ -103,6 +105,8 @@ const ChatBot = () => {
     );
   };
 
+  if(!user) return null;
+
   return (
     <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-4">
       <AnimatePresence>
@@ -122,7 +126,7 @@ const ChatBot = () => {
                   </Button>
                 )}
                 <span className="flex items-center gap-2 font-semibold text-lg">
-                  <p className="dark:text-gray-50 text-gray-800">Proto</p>
+                  <p className="dark:text-gray-50 text-gray-800">Aster</p>
                   <p className="text-blue-500">AI</p>
                 </span>
               </div>

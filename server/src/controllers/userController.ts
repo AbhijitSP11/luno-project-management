@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
+import bcrypt from 'bcryptjs';
+import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
 
@@ -35,18 +37,25 @@ export const getUser = async (
 };
 
 export const postUser = async (req: Request, res: Response):Promise<void> => {
-  console.log("postuser req.body", req.body)
     try {
-      const { email, name, image: profilePictureUrl } = req.body;
-
+      const { email, name, password, image: profilePictureUrl } = req.body;
+      let hashedPassword: string | undefined;
+      if (password) {
+        hashedPassword = await bcrypt.hash(password, 10);
+      }
+  
       const user = await prisma.user.upsert({
-        where: { email }, 
-        update: { name, profilePictureUrl }, 
+        where: { email },
+        update: {
+          name,
+          profilePictureUrl
+        },
         create: {
           email,
           name,
           profilePictureUrl,
-          username: email.split('@')[0],
+          password: hashedPassword || "next-auth-password",  
+          username: email.split('@')[0],  
         },
       });
         res.json(user);
@@ -57,11 +66,8 @@ export const postUser = async (req: Request, res: Response):Promise<void> => {
 };
 
 export const getAuthUser = async (req:Request, res:Response):Promise<void> => {
-  console.log("req user request recieved", req.user) 
     try {
       const email = req.user.email;
-
-      console.log("email found: ", email);
 
       const user = await prisma.user.findUnique({
         where: { email }, 
@@ -72,8 +78,6 @@ export const getAuthUser = async (req:Request, res:Response):Promise<void> => {
         },
       });
 
-      console.log("user found: ", user);
-  
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
@@ -83,4 +87,59 @@ export const getAuthUser = async (req:Request, res:Response):Promise<void> => {
       console.error('Error fetching user:', error);
       res.status(500).json({ error: 'Server error' });
     }
+};
+
+export const login = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      res.status(400).json({ message: 'Email and password are required' });
+      return;
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (!user) {
+      res.status(401).json({ message: 'Invalid credentials' });
+      return;
+    }
+
+    if (!user.password) {
+      res.status(401).json({ message: 'Account exists with different sign-in method' });
+      return;
+    }
+
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    if (!isValidPassword) {
+      res.status(401).json({ message: 'Invalid credentials' });
+      return;
+    }
+
+    const accessToken = jwt.sign(
+      {
+        userId: user.userId,
+        email: user.email,
+        name: user.name,
+      },
+      process.env.JWT_SECRET!,
+      { expiresIn: '24h' }
+    );
+
+    const response = {
+      userId: user.userId,
+      email: user.email,
+      name: user.name,
+      accessToken,
+      username: user.username,
+      teamId: user.teamId,
+    }
+    res.json(response);
+
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
+};

@@ -3,9 +3,7 @@ import jwt from 'jsonwebtoken';
 
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    console.log("All headers:", req.headers);
     const authHeader = req.headers.authorization;
-    console.log("Auth header:", authHeader);
     
     if (!authHeader?.startsWith('Bearer ')) {
       console.log("No valid auth header found");
@@ -13,11 +11,9 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
     }
 
     const token = authHeader.split(' ')[1];
-    console.log("Token to verify:", token);
 
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-      console.log("Decoded token:", decoded);
       req.user = decoded;
       next();
     } catch (jwtError) {

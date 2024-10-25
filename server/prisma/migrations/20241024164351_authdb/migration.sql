@@ -6,6 +6,7 @@ CREATE TABLE "User" (
     "username" TEXT NOT NULL,
     "profilePictureUrl" TEXT,
     "emailVerified" TIMESTAMP(3),
+    "password" TEXT NOT NULL,
     "teamId" INTEGER,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("userId")
