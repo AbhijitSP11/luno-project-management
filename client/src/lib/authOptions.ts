@@ -65,6 +65,11 @@ export const authOptions: NextAuthOptions = {
       GoogleProvider({
         clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
         clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET!,
+        authorization: {
+          params: {
+              redirect_uri: `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/auth/callback/google`,
+          },
+      },
       }),
     ],
     callbacks: {
