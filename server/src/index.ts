@@ -29,10 +29,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cors({
   origin: process.env.CLIENT_ORIGIN || '*', 
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], 
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 }));
+
 
 
 // Error handling middleware

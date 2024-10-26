@@ -8,6 +8,7 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import jwt from 'jsonwebtoken'
 
 export const authOptions: NextAuthOptions = {
+    debug: true, 
     secret: process.env.NEXTAUTH_SECRET,
     providers: [   
       CredentialsProvider({
