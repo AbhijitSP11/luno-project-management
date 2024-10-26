@@ -8,6 +8,7 @@ import ClientProvider from "./ClientProvider";
 import ChatBot from "@/components/chatbot";
 import AuthProvider from "./providers/SessionProvider";
 import { usePathname } from "next/navigation";
+import { Toaster } from 'sonner'
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const isSidebarCollapsed = useAppSelector(
@@ -53,6 +54,7 @@ const DashboardWrapper = ({ children }: { children: React.ReactNode }) => {
     <AuthProvider>
       <StoreProvider>
         <ClientProvider>
+          <Toaster richColors position="top-right"/>
           <DashboardLayout>{children}</DashboardLayout>
         </ClientProvider>
       </StoreProvider>

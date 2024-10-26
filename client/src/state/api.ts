@@ -164,7 +164,7 @@ export const api = createApi({
             invalidatesTags: (result, error, {taskId}) => [{type: "Tasks", id: taskId}]
         }), 
         getUsers: build.query<User[], void>({
-            query: () => "users",
+            query: () => "/api/users",
             providesTags: ["Users"],    
         }), 
         search: build.query<SearchResults, string>({

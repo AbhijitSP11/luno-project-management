@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import Select, { components } from "react-select";
 import { Priority, Status, Task, useCreateTasksMutation, useGetUsersQuery} from "@/state/api";
 import { priorityColorMap } from "@/constants/constants";
+import { toast } from "sonner";
 
 interface Props {
   isOpen: boolean;
@@ -80,7 +81,7 @@ const PrioritySingleValue = (props: any) => (
 
 const ModalNewTask: React.FC<Props> = ({ isOpen, onClose, id = null  }) => {
 
-  const [createTask, {isLoading}] = useCreateTasksMutation();
+  const [createTask, {isLoading, isSuccess}] = useCreateTasksMutation();
   const {data: users} = useGetUsersQuery();
 
   const userOptions = users ? users.map(user => ({
@@ -201,6 +202,8 @@ const ModalNewTask: React.FC<Props> = ({ isOpen, onClose, id = null  }) => {
     e.preventDefault();
     if (isFormValid()) {
       createTask(taskData);
+      isSuccess ? toast.success("Task created succesfully") : 
+      toast.error("Error creating task. Please try again.")
       onClose();
     }
   };

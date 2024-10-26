@@ -12,7 +12,7 @@ import { signOut } from 'next-auth/react';
 
 const SIDEBAR_LINKS: ISidebarLinkProps[] = [
     {
-        href: "/", 
+        href: "/dashboard", 
         icon: Home, 
         label: "Home"
     },
@@ -106,17 +106,7 @@ const Sidebar = () => {
                         <X className='h-6 w-6 text-gray-800 hover:text-gray-500 dark:text-white'/>
                     </button>)}
             </div>
-            {/*Team*/}
-            <div className='flex items-center gap-5 border-y-[1.5px] border-gray-100'>
-               <p className='text-white bg-blue-700 p-4 text-4xl'>L</p> 
-                <div>
-                    <h3 className='text-md font-bold tracking-wide dark:text-white'></h3>
-                    <div className='mt-1 flex items-center gap-2'>
-                        <Lock className='h-3 w-3 text-gray-300'/>
-                        <p className='text-xs text-gray-300'>Private</p>
-                    </div>
-                </div>
-            </div>
+          
             {/*navLinks*/}
             <div className='flex flex-col gap-2 overflow-y-auto'> 
                 <nav className='z-10 w-full'>
@@ -160,13 +150,13 @@ const Sidebar = () => {
         </div>
         <div className='z-10 mt-32 flex w-full flex-col items-center gap-4 bg-white px-8 py-4 dark:bg-gray-950  md:hidden'>
             <div className='flex w-full items-center'>
-                <div className='align-center flex h-9 w-9 justify-center'>
+                <div className='align-center flex h-6 w-6 justify-center'>
                 {!!user?.image ? (
                     <Image 
                     src={`https://proto-pm-s3-images.s3.ap-south-1.amazonaws.com/${user?.image}`}
                     alt={user?.name || "User profile"}
-                    width={100}
-                    height={100}
+                    width={80}
+                    height={80}
                     className="h-full object-cover rounded-full"/>
                 ) : (
                     <User className='h-6 w-6 cursor-pointer self-center rounded-full dark:text-white'/>

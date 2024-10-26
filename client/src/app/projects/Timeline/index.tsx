@@ -65,7 +65,7 @@ const Timeline = ({id, setIsModalNewTaskOpen}: Props) => {
       ]
 
     return (
-    <div className='px-4 xl:px-6'>
+    <div className='w-full md:w-[calc(100%-16rem)] px-4 xl:px-6'>
         <div className='flex flex-wrap items-center justify-between gap-2 py-5'>
             <h1 className='me-2 text-lg font-bold dark:text-white'>
                 Project Tasks Timeline
@@ -90,14 +90,6 @@ const Timeline = ({id, setIsModalNewTaskOpen}: Props) => {
                     barBackgroundColor={isDarkMode ? "#101214" : "#aeb8c2"}
                     barBackgroundSelectedColor={isDarkMode ? "#000" : "#9ba1e6"}
                 />
-            </div>
-            <div className='px-4 pb-5 pt-1'>
-                <button 
-                    onClick={()=> setIsModalNewTaskOpen} 
-                    className='flex items-center rounded bg-blue-primary px-3 py-2 text-white hover:bg-blue-600'
-                >
-                    Add New Task
-                </button>
             </div>
         </div>
     </div>

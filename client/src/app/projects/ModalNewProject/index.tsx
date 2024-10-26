@@ -3,6 +3,7 @@ import { useCreateProjectMutation } from "@/state/api";
 import React, { useState } from "react";
 import { formatISO } from "date-fns";
 import Spinner from "@/components/Spinner";
+import { toast } from "sonner";
 
 type Props = {
   isOpen: boolean;
@@ -16,24 +17,31 @@ const ModalNewProject = ({ isOpen, onClose }: Props) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  const handleSubmit = async () => {
-    if (!projectName || !startDate || !endDate) return;
-
-    const formattedStartDate = formatISO(new Date(startDate), {
-      representation: "complete",
-    });
-    const formattedEndDate = formatISO(new Date(endDate), {
-      representation: "complete",
-    });
-
-    await createProject({
-      name: projectName,
-      description,
-      startDate: formattedStartDate,
-      endDate: formattedEndDate,
-    });
-  };
-
+    const handleSubmit = async () => {
+      if (!isFormValid()) return;
+  
+      try {
+        const formattedStartDate = formatISO(new Date(startDate), {
+          representation: "complete",
+        });
+        const formattedEndDate = formatISO(new Date(endDate), {
+          representation: "complete",
+        });
+  
+        await createProject({
+          name: projectName,
+          description,
+          startDate: formattedStartDate,
+          endDate: formattedEndDate,
+        }).unwrap(); 
+  
+        toast.success("Project created successfully!");
+        onClose();
+      } catch (error) {
+        toast.error("Failed to create project. Please try again.");
+      }
+    };
+  
   const isFormValid = () => {
     return projectName && description && startDate && endDate;
   };
@@ -86,7 +94,7 @@ const ModalNewProject = ({ isOpen, onClose }: Props) => {
         >
           {isLoading ? (
             <div className="flex items-center gap-2">
-              <Spinner/> 
+              <Spinner /> 
               <p>Creating...</p>
             </div> 
             )  : "Create Project"}
