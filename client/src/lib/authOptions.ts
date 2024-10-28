@@ -68,7 +68,7 @@ export const authOptions: NextAuthOptions = {
         clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET!,
         authorization: {
           params: {
-              redirect_uri: `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/auth/callback/google`,
+              redirect_uri: `https://luno-project-management.vercel.app/api/auth/callback/google`,
           },
       },
       }),
